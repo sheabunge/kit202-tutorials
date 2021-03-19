@@ -1,7 +1,7 @@
 console.log('\n--- Challenge 1 ---\n');
 
 {
-	console.log('\n- Task 1 -');
+	console.log('\nTask 1');
 
 	let kangaroo = (98 + 109 + 89 + 90) / 4;
 	let gumtree = (89 + 92 + 92 + 111) / 4;
@@ -17,7 +17,8 @@ console.log('\n--- Challenge 1 ---\n');
 }
 
 {
-	// Task 2
+	console.log('\nTask 2');
+
 	const MIN_SCORE = 100;
 	let kangaroo = (98 + 113 + 102 + 100) / 4;
 	let gumtree = (109 + 96 + 124 + 98) / 4;
@@ -33,7 +34,8 @@ console.log('\n--- Challenge 1 ---\n');
 }
 
 {
-	// Task 3
+	console.log('\nTask 3');
+
 	const MIN_SCORE = 100;
 	let kangaroo = (98 + 112 + 102 + 100) / 4;
 	let gumtree = (110 + 96 + 107 + 99) / 4;
@@ -51,7 +53,7 @@ console.log('\n--- Challenge 1 ---\n');
 }
 
 {
-	// Task 4
+	console.log('\nTask 4');
 
 	// const calculateAverage = (a, b, c, d, e) => (a + b + c + d + e) / 5;
 

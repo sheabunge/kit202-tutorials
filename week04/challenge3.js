@@ -1,3 +1,5 @@
+console.log('\n--- Challenge 3 ---\n');
+
 {
 	const calTax = (taxableIncome) => taxableIncome *
 		(60000 <= taxableIncome && taxableIncome <= 10000 ? 0.35 : 0.4);
@@ -16,6 +18,10 @@
 		netIncome.push(income - tax);
 	}
 
+	console.log('taxable income', taxableIncomes);
+	console.log('taxes', taxes);
+	console.log('net income', netIncome);
+
 	// Task 4
 	const calAverage = (arr) => {
 		let sum = 0;
@@ -26,5 +32,6 @@
 
 		return sum / arr.length;
 	};
-	console.log(calAverage(netIncome));
+
+	console.log('final average of net income is', calAverage(netIncome));
 }
