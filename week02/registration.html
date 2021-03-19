@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Registration</title>
+	<style>
+		.form-body {
+			display: grid;
+			grid-template-columns: max-content max-content;
+			gap: 0.5em 1em;
+		}
+	</style>
+</head>
+<body>
+<h1>Marathon Registration</h1>
+
+<form>
+	<div class="form-body">
+		<label for="first_name">First Name</label>
+		<input type="text" id="first_name" name="first_name" required>
+
+		<label for="last_name">Last Name</label>
+		<input type="text" id="last_name" name="last_name" required>
+
+		<label>Gender</label>
+		<div>
+			<label><input type="radio" name="gender" id="gender_female" value="female">Female</label>
+			<label><input type="radio" name="gender" id="gender_male" value="male">Male</label>
+			<label><input type="radio" name="gender" id="gender_other" value="other">Other</label>
+		</div>
+
+		<label for="race">Race</label>
+		<select name="race" id="race" required>
+			<option value="">Select your race</option>
+			<option value="fun-run-5k">Fun Run 5k</option>
+			<option value="half-marathon">Half Marathon</option>
+			<option value="full-marathon">Full Marathon</option>
+		</select>
+
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email" required>
+
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" pattern="(?=.*\d)\w{6,8}" required
+		       title="Passwords should be 6-8 letters with at least one number">
+
+		<label for="confirm_password">Confirm Password</label>
+		<input type="password" name="confirm_password" id="confirm_password" pattern="(?=.*\d)\w{6,8}" required>
+
+		<label for="age">Age Group</label>
+		<select name="age" id="age" required>
+			<option value="">Select your age group</option>
+			<option value="under-18">Under 18</option>
+			<option value="18-30">18–30</option>
+			<option value="30-50">30–50</option>
+			<option value="50-plus">50+</option>
+		</select>
+	</div>
+
+	<p>
+		<input type="checkbox" name="toc" id="toc" required>
+		<label for="toc">I agree to the terms and conditions.</label>
+	</p>
+
+	<p><input type="submit" value="Submit"></p>
+</form>
+</body>
+</html>
