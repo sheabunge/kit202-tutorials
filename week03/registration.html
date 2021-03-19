@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Registration</title>
+</head>
+<body>
+<header>
+	<h1>Marathon Registration</h1>
+</header>
+<main>
+	<form>
+		<table>
+			<tr>
+				<td><label for="first_name">First Name</label></td>
+				<td><input type="text" id="first_name" name="first_name" required title=""></td>
+			</tr>
+			<tr>
+				<td><label for="last_name">Last Name</label></td>
+				<td><input type="text" id="last_name" name="last_name" required></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>
+					<label><input type="radio" name="gender" id="gender_female" value="female">Female</label>
+					<label><input type="radio" name="gender" id="gender_male" value="male">Male</label>
+					<label><input type="radio" name="gender" id="gender_other" value="other">Other</label>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="race">Race</label></td>
+				<td>
+					<select name="race" id="race" required>
+						<option value="" disabled selected>Select your race</option>
+						<option value="fun-run-5k">Fun Run 5k</option>
+						<option value="half-marathon">Half Marathon</option>
+						<option value="full-marathon">Full Marathon</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="email">Email</label></td>
+				<td><input type="email" name="email" id="email" required></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password</label></td>
+				<td><input type="password" name="password" id="password" pattern="(?=.*\d)\w{6,8}" required
+				           title="Passwords should be 6-8 letters with at least one number"></td>
+			</tr>
+			<tr>
+				<td><label for="confirm_password">Confirm Password</label></td>
+				<td><input type="password" name="confirm_password" id="confirm_password" pattern="(?=.*\d)\w{6,8}"
+				           required title="Passwords should be 6-8 letters with at least one number"></td>
+			</tr>
+			<tr>
+				<td><label for="age">Age Group</label></td>
+				<td>
+					<select name="age" id="age" required>
+						<option value="">Select your age group</option>
+						<option value="under-18">Under 18</option>
+						<option value="18-30">18–30</option>
+						<option value="30-50">30–50</option>
+						<option value="50-plus">50+</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="checkbox" name="toc" id="toc" required>
+					<label for="toc">I agree to the terms and conditions.</label>
+				</td>
+			</tr>
+		</table>
+
+		<p><input type="submit" value="Submit"></p>
+	</form>
+</main>
+</body>
+</html>
