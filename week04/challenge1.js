@@ -1,15 +1,18 @@
+console.log('\n--- Challenge 1 ---\n');
+
 {
-	// Task 1
+	console.log('\n- Task 1 -');
+
 	let kangaroo = (98 + 109 + 89 + 90) / 4;
 	let gumtree = (89 + 92 + 92 + 111) / 4;
 	console.log(kangaroo, gumtree);
 
 	if (kangaroo > gumtree) {
-		alert('Kangaroos win!')
+		console.log('Kangaroos win!')
 	} else if (gumtree > kangaroo) {
-		alert('Gumtree win!');
+		console.log('Gumtree win!');
 	} else {
-		alert('Both win');
+		console.log('Both win');
 	}
 }
 
@@ -21,11 +24,11 @@
 	console.log(kangaroo, gumtree);
 
 	if (kangaroo > gumtree && kangaroo >= MIN_SCORE) {
-		alert('Kangaroos win!')
+		console.log('Kangaroos win!')
 	} else if (gumtree > kangaroo && gumtree >= MIN_SCORE) {
-		alert('Gumtree win!');
+		console.log('Gumtree win!');
 	} else {
-		alert('Both win');
+		console.log('Both win');
 	}
 }
 
@@ -37,13 +40,13 @@
 	console.log(kangaroo, gumtree);
 
 	if (MIN_SCORE < kangaroo && kangaroo > gumtree) {
-		alert('Kangaroos win!')
+		console.log('Kangaroos win!')
 	} else if (MIN_SCORE < gumtree && gumtree > kangaroo) {
-		alert('Gumtree win!');
+		console.log('Gumtree win!');
 	} else if (gumtree === kangaroo && gumtree >= MIN_SCORE) {
-		alert('Both win');
+		console.log('Both win');
 	} else {
-		alert('Nobody wins');
+		console.log('Nobody wins');
 	}
 }
 
@@ -57,11 +60,11 @@
 
 	const determineWinner = (avgKangaroo, avgGumtree) => {
 		if (avgKangaroo >= 2 * avgGumtree) {
-			alert(`Kangaroo wins! (${avgKangaroo} vs ${avgGumtree})`);
+			console.log(`Kangaroo wins! (${avgKangaroo} vs ${avgGumtree})`);
 		} else if (avgKangaroo > 2 * avgGumtree) {
-			alert(`Gumtree wins! (${avgGumtree} vs ${avgKangaroo})`);
+			console.log(`Gumtree wins! (${avgGumtree} vs ${avgKangaroo})`);
 		} else {
-			alert('No winner');
+			console.log('No winner');
 		}
 	};
 
