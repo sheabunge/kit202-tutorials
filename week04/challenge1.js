@@ -58,7 +58,7 @@ console.log('\n--- Challenge 1 ---\n');
 	// const calculateAverage = (a, b, c, d, e) => (a + b + c + d + e) / 5;
 
 	const calculateSum = (...scores) => scores.reduce((prev, current) => prev + current);
-	const calculateAverage = (...scores) => calculateSum(scores) / scores.length;
+	const calculateAverage = (...scores) => calculateSum(...scores) / scores.length;
 
 	const determineWinner = (avgKangaroo, avgGumtree) => {
 		if (avgKangaroo >= 2 * avgGumtree) {
