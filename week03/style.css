@@ -1,31 +1,28 @@
-
 /* Body:
 Background color : #60a9ff
-All the contents and item should be aligned in center and displayed with flex.
+All the contents and item should be aligned in the center using flexbox.
 minimum height of the body is 100vh.
 */
 
 
 /* with the class = "panel"
 Background color of the panel is white.
-Radious of the border is 10px.
-It has a paddings at 15px, 25px.
+Radius of the border is 10px.
+It has padding widths of 15px and 25px.
 Maximum width of panel is 960px.
-It will display with flex container.
-The direction of the flex is coloumn.
-Texts are algined in the center.
-All texts are displayed in uppercases
+It will display as a flex container.
+The direction of the flex is column.
+Texts are aligned in the center.
+All texts are displayed in uppercase.
 */
 
 
-
-/* with the class = "running-plan"
-It has a border at the bottom with 1 px, weightning, color: #e1f1ff
+/* with the class = "pricing-plan"
+It has a border at the bottom with 1 px, solid style, color: #e1f1ff
 */
 
 
-
-/* the last elements under the class = "running-plan"
+/* the last elements under the class = "pricing-plan"
 It does not have any borders
 */
 
@@ -46,7 +43,7 @@ Letters have a space at 1px
 
 /* the class = "running-features"
 top margin is 50px
-right and lef margins are 0
+right and left margins are 0
 bottom margin is 25px
 colour is #016ff9
 */
@@ -57,14 +54,14 @@ colour is #016ff9
 /* the class = "running-features-item"
 font is weighted at 600
 font size is 12px.
-letter has a space at 1 px
-top and bottom paddings are 15px
-right and left paddings are 0
-it has a border at the top at 1px with color:  #e1f1ff
+letters are space 1px apart
+top and bottom padding width is 15px
+right and left padding width is 0
+it has a border at the top 1px wide with color #e1f1ff
 */
 
 /* the last element of the class = "running-features-item"
-it has a bottom border at 1 px with color : #e1f1ff
+it has a bottom border 1px wide with color #e1f1ff
 */
 
 /* the class = "running-donation"
@@ -74,11 +71,11 @@ it is displayed as block.
 */
 
 /* the class = "donate-button"
-It has a border at 1 px with the color : #9dd1ff
+It has a border 1px wide with the color #9dd1ff
 The radius of the border is 10px.
-Button color is #348efe
-Top and bottom paddings are 15px.
-left and right paddings are 35px.
+Button text color is #348efe
+Top and bottom padding width is 15px.
+left and right padding width is 35px.
 Top and bottom margins are 25px.
 left and right margins are 0.
 it is displayed as inline-block.
