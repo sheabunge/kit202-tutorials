@@ -1,47 +1,43 @@
-$(document).ready(() => {
+document.querySelector('.registration-form').addEventListener('submit', (event) => {
+	$('#registration').modal('show');
 
-	$('.registration-form').on('submit', () => {
-		$('#registration').modal('show');
+	const firstName = document.getElementById('first-name');
+	const lastName = document.getElementById('last-name');
+	const race = document.getElementById('race');
+	const email = document.getElementById('email');
+	const password = document.getElementById('password');
+	const passwordConfirm = document.getElementById('confirm-password');
+	const age = document.getElementById('age');
+	const toc = document.getElementById('toc');
 
-		const firstName = $('#first-name');
-		const lastName = $('#last-name');
-		const race = $('#race');
-		const email = $('#email');
-		const password = $('#password');
-		const passwordConfirm = $('#confirm-password');
-		const age = $('#age');
-		const toc = $('#toc');
+	toc.classList.remove('is-invalid');
 
-		toc.removeClass('is-invalid');
+	// put all of the text-based input form controls into an array so we can go over them at once.
+	const requiredTextInputs = [firstName, lastName, race, email, password, passwordConfirm, age];
 
-		// put all of the text-based input form controls into an array so we can go over them at once.
-		const requiredTextInputs = [firstName, lastName, race, email, password, passwordConfirm, age];
+	for (const input of requiredTextInputs) {
+		// clear any existing errors
+		input.classList.remove('is-invalid');
 
-		for (const input of requiredTextInputs) {
-			// clear any existing errors
-			input.removeClass('is-invalid');
-
-			// check if the input is empty
-			if ('' === input.val()) {
-				// if so, display the message and return from the form
-				input.addClass('is-invalid');
-				return false;
-			}
+		// check if the input is empty
+		if ('' === input.value) {
+			// if so, display the message and prevent the form from submitting
+			event.preventDefault();
+			input.classList.add('is-invalid');
+			return;
 		}
+	}
 
-		// also check whether the two password controls match
-		if (password.value !== passwordConfirm.value) {
-			passwordConfirm.addClass('is-invalid');
-			return false;
-		}
+	// also check whether the two password controls match
+	if (password.value !== passwordConfirm.value) {
+		event.preventDefault();
+		passwordConfirm.classList.add('is-invalid');
+		return;
+	}
 
-		// check if the terms and conditions checkbox is checked
-		if (!toc.is(':checked')) {
-			toc.addClass('is-invalid');
-			return false;
-		}
-
-		// otherwise, if everything passed, then allow the form to submit
-		return true;
-	});
+	// check if the terms and conditions checkbox is checked
+	if (!toc.checked) {
+		event.preventDefault();
+		toc.classList.add('is-invalid');
+	}
 });
