@@ -1,6 +1,15 @@
 document.querySelector('.registration-form').addEventListener('submit', (event) => {
 	$('#registration').modal('show');
 
+	/* Set the invalid status of an element and prevent the form from submitting. */
+	const setInvalid = (input) => {
+		event.preventDefault();
+		input.classList.add('is-invalid');
+	};
+
+	/* Clear the invalid status of an element and prevent the form from submitting. */
+	const clearStatus = (input) => input.classList.remove('is-invalid');
+
 	const firstName = document.getElementById('first-name');
 	const lastName = document.getElementById('last-name');
 	const race = document.getElementById('race');
@@ -10,34 +19,31 @@ document.querySelector('.registration-form').addEventListener('submit', (event) 
 	const age = document.getElementById('age');
 	const toc = document.getElementById('toc');
 
-	toc.classList.remove('is-invalid');
+	clearStatus(toc);
 
 	// put all of the text-based input form controls into an array so we can go over them at once.
 	const requiredTextInputs = [firstName, lastName, race, email, password, passwordConfirm, age];
 
 	for (const input of requiredTextInputs) {
 		// clear any existing errors
-		input.classList.remove('is-invalid');
+		clearStatus(input);
 
 		// check if the input is empty
 		if ('' === input.value) {
 			// if so, display the message and prevent the form from submitting
-			event.preventDefault();
-			input.classList.add('is-invalid');
+			setInvalid(input);
 			return;
 		}
 	}
 
 	// also check whether the two password controls match
 	if (password.value !== passwordConfirm.value) {
-		event.preventDefault();
-		passwordConfirm.classList.add('is-invalid');
+		setInvalid(passwordConfirm);
 		return;
 	}
 
 	// check if the terms and conditions checkbox is checked
 	if (!toc.checked) {
-		event.preventDefault();
-		toc.classList.add('is-invalid');
+		setInvalid(toc);
 	}
 });
