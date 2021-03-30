@@ -48,6 +48,7 @@ foreach ( $fields as $field ) {
 			$test_value = str_replace( '-', '', $test_value );
 			$test_value = str_replace( '(', '', $test_value );
 			$test_value = str_replace( ')', '', $test_value );
+			$test_value = rtrim( $test_value, '+' );
 
 			// check that the resulting value is a number ten digits long
 			if ( ! is_numeric( $test_value ) || 10 !== strlen( $test_value ) ) {
