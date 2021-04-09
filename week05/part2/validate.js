@@ -32,14 +32,12 @@ document.querySelector('.registration-form').addEventListener('submit', (event) 
 		if ('' === input.value) {
 			// if so, display the message and prevent the form from submitting
 			setInvalid(input);
-			return;
 		}
 	}
 
 	// also check whether the two password controls match
 	if (password.value !== passwordConfirm.value) {
 		setInvalid(passwordConfirm);
-		return;
 	}
 
 	// check if the terms and conditions checkbox is checked
