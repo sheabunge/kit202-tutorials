@@ -30,7 +30,7 @@ $(document).ready(() => {
 		}
 
 		// also check whether the two password controls match
-		if (password.value !== passwordConfirm.value) {
+		if (password.val() !== passwordConfirm.val()) {
 			passwordConfirm.addClass('is-invalid');
 			return false;
 		}
