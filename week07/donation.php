@@ -9,33 +9,8 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="index.html">Run for Kids</a>
-			<button class="navbar-toggler" type="button"
-			        data-toggle="collapse" data-target="#expandme">
-				<span class="fas fa-bars"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="expandme">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link" href="index.html">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="index.html">Registration</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link" href="donation.php">Donation</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">About</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</header>
+
+<?php include 'partials/header.php'; ?>
 
 <main class="donation">
 	<div class="panel">
