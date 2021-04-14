@@ -1,5 +1,5 @@
 document.querySelector('.registration-form').addEventListener('submit', (event) => {
-	$('#registration').modal('show');
+	console.log(this);
 
 	/* Set the invalid status of an element and prevent the form from submitting. */
 	const setInvalid = (input) => {
@@ -10,14 +10,14 @@ document.querySelector('.registration-form').addEventListener('submit', (event) 
 	/* Clear the invalid status of an element and prevent the form from submitting. */
 	const clearStatus = (input) => input.classList.remove('is-invalid');
 
-	const firstName = document.getElementById('first-name');
-	const lastName = document.getElementById('last-name');
-	const race = document.getElementById('race');
-	const email = document.getElementById('email');
-	const password = document.getElementById('password');
-	const passwordConfirm = document.getElementById('confirm-password');
-	const age = document.getElementById('age');
-	const toc = document.getElementById('toc');
+	const firstName = this.querySelector('[name=first_name]');
+	const lastName = this.querySelector('[name=last_name]');
+	const race = this.querySelector('[name=race]');
+	const email = this.querySelector('[name=email]');
+	const password = this.querySelector('[name=password]');
+	const passwordConfirm = this.querySelector('[name=confirm_password]');
+	const age = this.querySelector('[name=age]');
+	const toc = this.querySelector('[name=toc]');
 
 	clearStatus(toc);
 

@@ -28,7 +28,7 @@ if ( isset( $_POST['update'] ) ) {
 	$race = $_POST['race'];
 	$email = $_POST['email'];
 
-	$age = $_POST['division'];
+	$age = $_POST['age'];
 
 	$query = $mysqli->prepare(
 		'UPDATE participant SET firstname = ?, lastname = ?, gender = ?, race = ?, email = ?, age_group = ? WHERE id = ?'
@@ -37,10 +37,10 @@ if ( isset( $_POST['update'] ) ) {
 	$query->bind_param( 'ssssssi', $first_name, $last_name, $gender, $race, $email, $age, $id );
 
 	if ( ! $query->execute() ) {
-		trigger_error( 'Error adding participant: ' . $query->error );
+		trigger_error( 'Error updating participant: ' . $query->error );
 	}
 
-	header( 'Location: participant_list.php?result=added' );
+	header( 'Location: participant_list.php?result=updated' );
 	die;
 }
 
