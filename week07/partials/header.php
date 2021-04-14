@@ -6,7 +6,7 @@ $nav_bar_item_class = function ( $page ) {
 
 ?>
 <header>
-	<nav class="navbar navbar-expand-lg navbar-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.php">Run for Kids</a>
 			<button class="navbar-toggler" type="button"

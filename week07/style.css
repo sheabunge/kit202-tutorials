@@ -4,12 +4,17 @@ All the contents and item should be aligned in the center using flexbox.
 minimum height of the body is 100vh.
 */
 
-.donation {
+body {
+	min-height: 100vh;
 	background-color: #60a9ff;
+	padding: 0;
+	margin: 0;
+}
+
+.donation {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	min-height: 100vh;
 }
 
 /* with the class = "panel"
