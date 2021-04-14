@@ -23,7 +23,6 @@ foreach ( $fields as $field ) {
 
 	// clean up input value and store it in the $values array
 	$value = stripslashes( trim( $_REQUEST[ $field ] ) );
-	$value = htmlspecialchars( $value );
 	$values[ $field ] = $value;
 
 	// perform extra validation on certain fields
