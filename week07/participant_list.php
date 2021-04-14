@@ -61,7 +61,7 @@ $age_groups = [
 				<tr>
 					<td><?= intval( $row['id'] ); ?></td>
 
-					<td><?= esc_html( $row['firstname'] . ', ' . $row['lastname'] ); ?></td>
+					<td><?= esc_html( $row['lastname'] . ', ' . $row['firstname'] ); ?></td>
 
 					<td><?= isset( $races[ $row['race'] ] ) ? $races[ $row['race'] ] : '–'; ?></td>
 
