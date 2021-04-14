@@ -29,7 +29,7 @@ foreach ( $fields as $field ) {
 	switch ( $field ) {
 		case 'name':
 			// use regex to ensure that the name does not contain strange characters
-			if ( ! preg_match( '/^[\w\s-.]*$/', $value ) ) {
+			if ( ! preg_match( '/^[\w\s-]*$/', $value ) ) {
 				$errors[ $field ] = 'Only letters and white space are allowed.';
 			}
 			break;
