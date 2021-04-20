@@ -23,14 +23,13 @@ foreach ( $fields as $field ) {
 
 	// clean up input value and store it in the $values array
 	$value = stripslashes( trim( $_REQUEST[ $field ] ) );
-	$value = htmlspecialchars( $value );
 	$values[ $field ] = $value;
 
 	// perform extra validation on certain fields
 	switch ( $field ) {
 		case 'name':
 			// use regex to ensure that the name does not contain strange characters
-			if ( ! preg_match( '/^[\w\s-.]*$/', $value ) ) {
+			if ( ! preg_match( '/^[\w\s-]*$/', $value ) ) {
 				$errors[ $field ] = 'Only letters and white space are allowed.';
 			}
 			break;
@@ -48,7 +47,7 @@ foreach ( $fields as $field ) {
 			$test_value = str_replace( '-', '', $test_value );
 			$test_value = str_replace( '(', '', $test_value );
 			$test_value = str_replace( ')', '', $test_value );
-			$test_value = rtrim( $test_value, '+' );
+			$test_value = ltrim( $test_value, '+' );
 
 			// check that the resulting value is a number ten digits long
 			if ( ! is_numeric( $test_value ) || 10 !== strlen( $test_value ) ) {
