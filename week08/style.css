@@ -1,0 +1,175 @@
+/* Body:
+Background color : #60a9ff
+All the contents and item should be aligned in the center using flexbox.
+minimum height of the body is 100vh.
+*/
+
+body {
+	min-height: 100vh;
+	background-color: #60a9ff;
+	padding: 0;
+	margin: 0;
+}
+
+.donation {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* with the class = "panel"
+Background color of the panel is white.
+Radius of the border is 10px.
+It has padding widths of 15px and 25px.
+Maximum width of panel is 960px.
+It will display as a flex container.
+The direction of the flex is column.
+Texts are aligned in the center.
+All texts are displayed in uppercase.
+*/
+
+.panel {
+	background-color: white;
+	border-radius: 10px;
+	padding: 15px 25px;
+	max-width: 960px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* with the class = "pricing-plan"
+It has a border at the bottom with 1 px, solid style, color: #e1f1ff
+*/
+
+.pricing-plan {
+	border-bottom: 1px solid #e1f1ff;
+}
+
+/* the last elements under the class = "pricing-plan"
+It does not have any borders
+*/
+
+.pricing-plan:last-child {
+	border-bottom: 0;
+}
+
+/* the class = "running-img"
+it has a margin at the bottom : 25px.
+Maximum width size is 100%
+*/
+
+.running-img {
+	margin-bottom: 25px;
+	max-width: 100%;
+}
+
+/* the class = "running-header"
+it has a color:#888
+font is weighted at 600
+Letters have a space at 1px
+*/
+
+.running-header {
+	color: #888;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+/* the class = "running-features"
+top margin is 50px
+right and left margins are 0
+bottom margin is 25px
+colour is #016ff9
+*/
+
+.running-features {
+	/*	margin-top: 50px;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 25px;*/
+
+	margin: 50px 0 25px;
+	color: #016ff9;
+}
+
+/* the class = "running-features-item"
+font is weighted at 600
+font size is 12px.
+letters are space 1px apart
+top and bottom padding width is 15px
+right and left padding width is 0
+it has a border at the top 1px wide with color #e1f1ff
+*/
+
+.running-features-item {
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: 1px;
+	padding: 15px 0;
+	border-top: 1px solid #e1f1ff;
+}
+
+/* the last element of the class = "running-features-item"
+it has a bottom border 1px wide with color #e1f1ff
+*/
+
+.running-features-item:last-child {
+	border-bottom: 1px solid #e1f1ff;
+}
+
+/* the class = "running-donation"
+It has a color: #016ff9
+the font size is 32 px and weighted at 700
+it is displayed as block.
+*/
+
+.running-donation {
+	color: #016ff9;
+	font-size: 32px;
+	font-weight: 700;
+	display: block;
+}
+
+/* the class = "donate-button"
+It has a border 1px wide with the color #9dd1ff
+The radius of the border is 10px.
+Button text color is #348efe
+Top and bottom padding width is 15px.
+left and right padding width is 35px.
+Top and bottom margins are 25px.
+left and right margins are 0.
+it is displayed as inline-block.
+*/
+
+.donate-button {
+	border: 1px solid #9dd1ff;
+	border-radius: 10px;
+	color: #348efe;
+	padding: 15px 35px;
+	margin: 25px 0;
+	display: inline-block;
+	text-decoration: none;
+}
+
+/* Advance: add media function
+When a user change the window size, panels are displayed as row.
+*/
+
+@media (min-width: 900px) {
+
+	.panel {
+		flex-direction: row;
+	}
+
+	.pricing-plan {
+		border-right: 1px solid #e1f1ff;
+		border-bottom: 0;
+		padding: 25px 50px;
+	}
+
+	.pricing-plan:last-child {
+		border-right: 0;
+	}
+}
