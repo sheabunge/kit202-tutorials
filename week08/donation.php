@@ -15,7 +15,7 @@
 <main class="donation">
 	<div class="panel">
 		<div class="pricing-plan">
-			<img src="icons/sole_running.png" alt="" class="running-img">
+			<img src="img/icons/sole_running.png" alt="" class="running-img">
 			<h2 class="running-header">Personal</h2>
 			<ul class="running-features">
 				<li class="running-features-item">Sole Running</li>
@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="pricing-plan">
-			<img src="icons/pair_running.png" alt="" class="running-img">
+			<img src="img/icons/pair_running.png" alt="" class="running-img">
 			<h2 class="running-header">Pair</h2>
 			<ul class="running-features">
 				<li class="running-features-item">Pair Running</li>
@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="pricing-plan">
-			<img src="icons/group_running.png" alt="" class="running-img">
+			<img src="img/icons/group_running.png" alt="" class="running-img">
 			<h2 class="running-header">Group</h2>
 			<ul class="running-features">
 				<li class="running-features-item">Group running</li>
