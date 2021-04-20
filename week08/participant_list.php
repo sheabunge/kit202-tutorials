@@ -73,7 +73,7 @@ $age_groups = [
 						<a href="#" class="btn btn-dark" data-toggle="modal" data-target="#user-edit-modal"
 						   data-id="<?= intval( $row['id'] ); ?>">Edit</a>
 
-						<a href="process.php?delete=<?= intval( $row['id'] ); ?>" class="btn btn-danger"
+						<a href="process.php?action=delete&id=<?= intval( $row['id'] ); ?>" class="btn btn-danger"
 						   onclick="return confirm('Are you sure you want to delete this participant?');">Delete</a>
 					</td>
 				</tr>
@@ -105,13 +105,14 @@ include 'partials/registration.php';
 			url: 'process.php',
 			method: 'POST',
 			data: {
-				edit: $(e.relatedTarget).data('id')
+				action: 'edit',
+				id: $(e.relatedTarget).data('id')
 			},
 			dataType: 'json',
 			success: data => {
 				console.log(data);
 
-				$('#update-user-id').val(data.id);
+				$('#edit-id').val(data.id);
 				$('#edit-first-name').val(data.firstname);
 				$('#edit-last-name').val(data.lastname);
 				$('#edit-gender-' + data.gender).prop('checked', true);

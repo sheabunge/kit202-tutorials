@@ -9,7 +9,8 @@
 			</div>
 			<div class="modal-body">
 				<form role="form" class="registration-form" action="process.php" method="post">
-					<input class="form-control" type="hidden" id="update-user-id" name="user_id">
+					<input type="hidden" name="action" value="update">
+					<input type="hidden" id="edit-id" name="id">
 
 					<div class="form-group row has-validation">
 						<label for="edit-first-name" class="col-sm-4 col-form-label">First Name</label>
