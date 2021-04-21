@@ -13,6 +13,13 @@
 <?php include 'partials/header.php'; ?>
 
 <div class="container">
+	<?php if ( isset( $_GET['result'] ) ) { ?>
+		<div class="alert alert-success text-center" role="alert">
+			<?php if ( 'registered' === $_GET['result'] ) {
+				echo 'Registration successful!';
+			} ?>
+		</div>
+	<?php } ?>
 	<div class="row">
 		<figure class="figure">
 			<img src="img/london_marathon.jpg" alt="London Marathon" class="img-fluid">

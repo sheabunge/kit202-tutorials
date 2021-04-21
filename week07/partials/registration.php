@@ -8,7 +8,9 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form class="registration-form">
+				<form class="registration-form" method="post" action="process.php">
+					<input type="hidden" name="action" value="register">
+
 					<div class="form-group row has-validation">
 						<label for="first-name" class="col-sm-4 col-form-label">First Name</label>
 						<div class="col-sm-8">
