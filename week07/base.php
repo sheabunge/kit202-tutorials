@@ -1,5 +1,6 @@
 <?php
 // database connection
+global $mysqli;
 $mysqli = new mysqli( 'localhost', 'username', 'password', 'kit202_tutorial06' );
 
 function esc_html( $output ) {

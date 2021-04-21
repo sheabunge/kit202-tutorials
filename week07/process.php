@@ -2,15 +2,50 @@
 
 require_once 'base.php';
 
+global $mysqli;
+
+// only continue if an action has been sent to this page.
 if ( ! isset( $_REQUEST['action'] ) ) {
 	return;
 }
 
+// perform a different task based on the desired action.
 switch ( $_REQUEST['action'] ) {
 
-	case 'edit':
+	case 'register':
+		// add a new user to the database table.
+
+		if ( empty( $_POST['email'] ) || empty( $_POST['password'] ) ) {
+			trigger_error( 'Cannot add a participant without an email and password' );
+			exit;
+		}
+
+		$first_name = $_POST['first_name'];
+		$last_name = $_POST['last_name'];
+		$gender = isset( $_POST['gender'] ) ? $_POST['gender'] : '';
+		$race = $_POST['race'];
+		$email = $_POST['email'];
+		$age = $_POST['age'];
+		$password = $_POST['password'];
+
+		// prepare the SQL query, safely including the provided data.
+		$sql = 'INSERT INTO participant (firstname, lastname, gender, race, email, password, age_group) VALUES (?, ?, ?, ?, ?, ?, ?)';
+		$query = $mysqli->prepare( $sql );
+
+		$query->bind_param( 'sssssss', $first_name, $last_name, $gender, $race, $email, $password, $age );
+
+		if ( ! $query->execute() ) {
+			trigger_error( 'Error adding participant: ' . $query->error );
+		}
+
+		header( 'Location: index.php?result=registered' );
+		die;
+
+	case 'fetch':
+		// fetch a user's details from the database.
 		$id = intval( $_REQUEST['id'] );
 
+		// prepare the query safely, without including the ID in the query itself.
 		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE id = ?' );
 		$query->bind_param( 'd', $id );
 
@@ -18,6 +53,7 @@ switch ( $_REQUEST['action'] ) {
 			trigger_error( 'Error fetching participant: ' . $query->error );
 		}
 
+		// fetch the resulting row and send to the browser as JSON.
 		$result = $query->get_result();
 		$row = $result->fetch_array();
 
@@ -25,15 +61,16 @@ switch ( $_REQUEST['action'] ) {
 		die;
 
 	case 'update':
+		// update a user's details in the database.
 		$id = intval( $_POST['id'] );
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$gender = $_POST['gender'];
 		$race = $_POST['race'];
 		$email = $_POST['email'];
-
 		$age = $_POST['age'];
 
+		// prepare the SQL query, safely including the sent data.
 		$query = $mysqli->prepare(
 			'UPDATE participant SET firstname = ?, lastname = ?, gender = ?, race = ?, email = ?, age_group = ? WHERE id = ?'
 		);
@@ -44,12 +81,15 @@ switch ( $_REQUEST['action'] ) {
 			trigger_error( 'Error updating participant: ' . $query->error );
 		}
 
+		// redirect back to the participant list with a status message.
 		header( 'Location: participant_list.php?result=updated' );
 		die;
 
 	case 'delete':
-		$id = intval( $_GET['id'] );
+		// delete a user from the database table.
+		$id = intval( $_REQUEST['id'] );
 
+		// prepare the SQL query, safely including the ID data.
 		$query = $mysqli->prepare( 'DELETE FROM participant WHERE id=?' );
 		$query->bind_param( 'd', $id );
 
@@ -57,6 +97,7 @@ switch ( $_REQUEST['action'] ) {
 			trigger_error( 'Error deleting participant: ' . $query->error );
 		}
 
+		// redirect back to the participant list with a status message.
 		header( 'Location: participant_list.php?result=deleted' );
 		die;
 }
