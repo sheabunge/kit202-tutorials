@@ -1,4 +1,4 @@
-<?php require 'base.php' ?>
+<?php require_once 'base.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
