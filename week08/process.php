@@ -51,7 +51,7 @@ switch ( $_REQUEST['action'] ) {
 		die;
 
 	case 'update':
-		$id = intval( $_REQUEST['id'] );
+		$id = intval( $_POST['id'] );
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$gender = $_POST['gender'];
