@@ -9,12 +9,15 @@ body {
 	background-color: #60a9ff;
 	padding: 0;
 	margin: 0;
+	display: flex;
+	flex-direction: column;
 }
 
 .donation {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex: 1;
 }
 
 /* with the class = "panel"

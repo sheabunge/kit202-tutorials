@@ -5,7 +5,7 @@ $(document).on('show.bs.modal', '#user-edit-modal', e => {
 		url: 'process.php',
 		method: 'POST',
 		data: {
-			action: 'edit',
+			action: 'fetch',
 			id: $(e.relatedTarget).data('id')
 		},
 		dataType: 'json',
