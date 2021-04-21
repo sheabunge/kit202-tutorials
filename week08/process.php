@@ -12,8 +12,8 @@ if ( ! isset( $_REQUEST['action'] ) ) {
 // perform a different task based on the desired action.
 switch ( $_REQUEST['action'] ) {
 
+	// add a new user to the database table.
 	case 'register':
-		// add a new user to the database table.
 
 		if ( empty( $_POST['email'] ) || empty( $_POST['password'] ) ) {
 			trigger_error( 'Cannot add a participant without an email and password' );
@@ -41,6 +41,7 @@ switch ( $_REQUEST['action'] ) {
 		header( 'Location: index.php?result=registered' );
 		die;
 
+	// authenticate a user to the site.
 	case 'login':
 		$user = trim( $_REQUEST['login_email'] );
 		$pass = trim( $_REQUEST['login_password'] );
@@ -67,9 +68,16 @@ switch ( $_REQUEST['action'] ) {
 
 		die;
 
+	// fetch a user's details from the database.
 	case 'fetch':
-		// fetch a user's details from the database.
 		$id = intval( $_REQUEST['id'] );
+
+		// only allow this action if an organiser or the user is fetching their own information.
+		if ( ! is_organiser() && $id !== $_SESSION['session_id'] ) {
+			http_response_code( 401 );
+			trigger_error( 'Unauthorised action' );
+			exit;
+		}
 
 		// prepare the query safely, without including the ID in the query itself.
 		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE id = ?' );
@@ -86,8 +94,16 @@ switch ( $_REQUEST['action'] ) {
 		echo json_encode( $row );
 		die;
 
+	// update a user's details in the database.
 	case 'update':
-		// update a user's details in the database.
+
+		// if attempting to do this while not logged in as an organiser, then trigger an error and exit.
+		if ( ! is_organiser() ) {
+			http_response_code( 401 );
+			trigger_error( 'Unauthorised action' );
+			exit;
+		}
+
 		$id = intval( $_POST['id'] );
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
@@ -111,8 +127,16 @@ switch ( $_REQUEST['action'] ) {
 		header( 'Location: participant_list.php?result=updated' );
 		die;
 
+	// delete a user from the database table.
 	case 'delete':
-		// delete a user from the database table.
+
+		// if attempting to do this while not logged in as an organiser, then trigger an error and exit.
+		if ( ! is_organiser() ) {
+			http_response_code( 401 );
+			trigger_error( 'Unauthorised action' );
+			exit;
+		}
+
 		$id = intval( $_REQUEST['id'] );
 
 		// prepare the SQL query, safely including the ID data.
