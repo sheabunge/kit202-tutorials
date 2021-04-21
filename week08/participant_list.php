@@ -17,26 +17,28 @@
 
 	<?php
 
+	global $mysqli;
+
+	$races = [
+		'5k'   => 'Fun Run 5k',
+		'half' => 'Half Marathon',
+		'full' => 'Full Marathon',
+	];
+
+	$age_groups = [
+		'kids'    => 'Kids (<18)',
+		'ya'      => 'Young Adults (18–30)',
+		'adults'  => 'Adults (30–50)',
+		'seniors' => 'Seniors (50+)',
+	];
+
 	if ( ! is_logged_in() ) {
 
 		echo '<div class="alert alert-danger text-center" role="alert">You must be logged in to access this page.</div>';
 
-	} else {
+	} else if ( is_organiser() ) {
 
 		$result = $mysqli->query( 'SELECT * FROM participant' );
-
-		$races = [
-			'5k'   => 'Fun Run 5k',
-			'half' => 'Half Marathon',
-			'full' => 'Full Marathon',
-		];
-
-		$age_groups = [
-			'kids'    => 'Kids (<18)',
-			'ya'      => 'Young Adults (18–30)',
-			'adults'  => 'Adults (30–50)',
-			'seniors' => 'Seniors (50+)',
-		];
 
 		if ( isset( $_GET['result'] ) ) { ?>
 			<div class="alert alert-success" role="alert">
@@ -88,6 +90,41 @@
 		</div>
 
 		<button class="btn btn-primary float-right" data-toggle="modal" data-target="#registration">Add</button>
+
+	<?php } else {
+
+		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE id = ?' );
+		$query->bind_param( 'd', $_SESSION['session_id'] );
+		$query->execute();
+
+		$row = $query->get_result()->fetch_array();
+
+		?>
+
+	<h3 class="mb-5 mt-4">Your details</h3>
+
+	<div class="table-responsive">
+
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th>Name</th>
+				<td><?= esc_html( $row['lastname'] . ', ' . $row['firstname'] ); ?></td>
+			</tr>
+			<tr>
+				<th>Race</th>
+				<td><?= isset( $races[ $row['race'] ] ) ? $races[ $row['race'] ] : '–'; ?></td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><?= esc_html( $row['email'] ); ?></td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td><?= isset( $age_groups[ $row['age_group'] ] ) ? $age_groups[ $row['age_group'] ] : '–'; ?></td>
+			</tr>
+		</table>
+	</div>
+
 	<?php } ?>
 </main>
 

@@ -21,3 +21,8 @@ function esc_attr( $output ) {
 function is_logged_in() {
 	return ! empty( $_SESSION['session_id'] );
 }
+
+function is_organiser() {
+	return 'organiser' === $_SESSION['session_access'];
+}
+
