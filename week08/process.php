@@ -95,13 +95,13 @@ switch ( $_REQUEST['action'] ) {
 		$race = $_POST['race'];
 		$email = $_POST['email'];
 		$age = $_POST['age'];
+		$access = $_POST['access'];
 
 		// prepare the SQL query, safely including the sent data.
-		$query = $mysqli->prepare(
-			'UPDATE participant SET firstname = ?, lastname = ?, gender = ?, race = ?, email = ?, age_group = ? WHERE id = ?'
-		);
+		$sql = 'UPDATE participant SET firstname = ?, lastname = ?, gender = ?, race = ?, email = ?, age_group = ?, access = ? WHERE id = ?';
+		$query = $mysqli->prepare( $sql );
 
-		$query->bind_param( 'ssssssi', $first_name, $last_name, $gender, $race, $email, $age, $id );
+		$query->bind_param( 'sssssssi', $first_name, $last_name, $gender, $race, $email, $age, $access, $id );
 
 		if ( ! $query->execute() ) {
 			trigger_error( 'Error updating participant: ' . $query->error );

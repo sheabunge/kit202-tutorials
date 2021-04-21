@@ -101,6 +101,16 @@
 						</div>
 					</div>
 
+					<div class="form-group row">
+						<label class="col-sm-4 col-form-label" for="edit-access">Access Level</label>
+						<div class="col-sm-8">
+							<select name="access" id="edit-access" class="form-control">
+								<option value="participant" selected>participant</option>
+								<option value="organiser">organiser</option>
+							</select>
+						</div>
+					</div>
+
 					<button class="btn btn-danger float-right" type="submit" id="update" name="update">Update</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</form>
