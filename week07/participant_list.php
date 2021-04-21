@@ -73,7 +73,7 @@ $age_groups = [
 						<a href="#" class="btn btn-dark" data-toggle="modal" data-target="#user-edit-modal"
 						   data-id="<?= intval( $row['id'] ); ?>">Edit</a>
 
-						<a href="process.php?delete=<?= intval( $row['id'] ); ?>" class="btn btn-danger"
+						<a href="process.php?action=delete&id=<?= intval( $row['id'] ); ?>" class="btn btn-danger"
 						   onclick="return confirm('Are you sure you want to delete this participant?');">Delete</a>
 					</td>
 				</tr>
@@ -88,14 +88,9 @@ $age_groups = [
 <?php
 
 include 'partials/edit.php';
-include 'partials/registration.php';
+include 'partials/footer.php';
 
 ?>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-<script src="validate.js"></script>
 
 <script>
 	$(document).on('show.bs.modal', '#user-edit-modal', e => {
@@ -105,13 +100,14 @@ include 'partials/registration.php';
 			url: 'process.php',
 			method: 'POST',
 			data: {
-				edit: $(e.relatedTarget).data('id')
+				action: 'edit',
+				id: $(e.relatedTarget).data('id')
 			},
 			dataType: 'json',
 			success: data => {
 				console.log(data);
 
-				$('#update-user-id').val(data.id);
+				$('#edit-id').val(data.id);
 				$('#edit-first-name').val(data.firstname);
 				$('#edit-last-name').val(data.lastname);
 				$('#edit-gender-' + data.gender).prop('checked', true);
