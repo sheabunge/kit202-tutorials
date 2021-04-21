@@ -8,7 +8,7 @@ if ( ! isset( $_REQUEST['action'] ) ) {
 
 switch ( $_REQUEST['action'] ) {
 
-	case 'edit':
+	case 'fetch':
 		$id = intval( $_REQUEST['id'] );
 
 		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE id = ?' );
@@ -48,7 +48,7 @@ switch ( $_REQUEST['action'] ) {
 		die;
 
 	case 'delete':
-		$id = intval( $_GET['id'] );
+		$id = intval( $_REQUEST['id'] );
 
 		$query = $mysqli->prepare( 'DELETE FROM participant WHERE id=?' );
 		$query->bind_param( 'd', $id );
