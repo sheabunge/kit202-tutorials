@@ -16,8 +16,12 @@
 						Logged in successfully! Redirecting&hellip;
 					</div>
 
-					<div class="alert alert-danger login-error d-none" role="alert">
+					<div class="alert alert-danger login-auth-error d-none" role="alert">
 						We could not find a participant matching these details.
+					</div>
+
+					<div class="alert alert-danger login-server-error d-none" role="alert">
+						There was an error checking the login details.<br>Please try again.
 					</div>
 
 					<input type="hidden" name="action" value="login">

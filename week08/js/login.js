@@ -3,7 +3,8 @@
 	const loginForm = document.querySelector('.login-form');
 	const emailInput = document.getElementById('login-email');
 	const passInput = document.getElementById('login-password');
-	const errorMsg = document.querySelector('.login-error');
+	const authErrorMsg = document.querySelector('.login-auth-error');
+	const serverErrorMsg = document.querySelector('.login-server-error');
 
 	// run this function when the login form is submitted.
 	loginForm.addEventListener('submit', (event) => {
@@ -12,7 +13,8 @@
 		event.preventDefault();
 
 		// clear up classes from last validation.
-		errorMsg.classList.add('d-none');
+		authErrorMsg.classList.add('d-none');
+		serverErrorMsg.classList.add('d-none');
 		emailInput.classList.remove('is-invalid');
 		passInput.classList.remove('is-invalid');
 
@@ -34,15 +36,20 @@
 
 		// add handler to respond to the request.
 		request.onload = function () {
-			console.log(this.response);
 
-			if (this.status >= 200 && this.status < 400 && this.response.success) {
+			if (this.status < 200 || this.status >= 400 || !this.response) {
+				// display a message informing the user there was a server error
+				serverErrorMsg.classList.remove('d-none');
+
+			} else if (!this.response.success) {
+				// otherwise, check if there was an authentication error.
+				authErrorMsg.classList.remove('d-none');
+
+			} else {
 				// if the login was successful, reload the page.
+				console.log(this.response);
 				document.querySelector('.login-success').classList.remove('d-none');
 				window.location.reload();
-			} else {
-				// if there was an error, display the error message.
-				errorMsg.classList.remove('d-none');
 			}
 		};
 

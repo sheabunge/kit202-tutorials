@@ -41,6 +41,32 @@ switch ( $_REQUEST['action'] ) {
 		header( 'Location: index.php?result=registered' );
 		die;
 
+	case 'login':
+		$user = trim( $_REQUEST['login_email'] );
+		$pass = trim( $_REQUEST['login_password'] );
+
+		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE email = ?' );
+		$query->bind_param( 's', $user );
+
+		if ( ! $query->execute() ) {
+			trigger_error( 'Error fetching participant: ' . $query->error );
+		}
+
+		$row = $query->get_result()->fetch_array( MYSQLI_ASSOC );
+
+		if ( $row && $user === $row['email'] && $pass === $row['password'] ) {
+			$_SESSION['session_id'] = $row['id'];
+			$_SESSION['session_user'] = $row['firstname'];
+			$_SESSION['session_email'] = $row['email'];
+			$_SESSION['session_access'] = $row['access'];
+
+			echo json_encode( [ 'success' => true ] );
+		} else {
+			echo json_encode( [ 'success' => false ] );
+		}
+
+		die;
+
 	case 'fetch':
 		// fetch a user's details from the database.
 		$id = intval( $_REQUEST['id'] );
