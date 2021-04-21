@@ -60,6 +60,7 @@
 					<th>Race</th>
 					<th>Email</th>
 					<th>Age Group</th>
+					<th>Role</th>
 					<th>Actions</th>
 				</tr>
 				</thead>
@@ -75,6 +76,8 @@
 						<td><a href="mailto:<?= esc_attr( $row['email'] ); ?>"><?= esc_html( $row['email'] ); ?></a></td>
 
 						<td><?= isset( $age_groups[ $row['age_group'] ] ) ? $age_groups[ $row['age_group'] ] : '–'; ?></td>
+
+						<td><?= esc_html( $row['access'] ); ?></td>
 
 						<td>
 							<a href="#" class="btn btn-dark" data-toggle="modal" data-target="#user-edit-modal"
@@ -121,6 +124,10 @@
 			<tr>
 				<th>Age</th>
 				<td><?= isset( $age_groups[ $row['age_group'] ] ) ? $age_groups[ $row['age_group'] ] : '–'; ?></td>
+			</tr>
+			<tr>
+				<th>Role</th>
+				<td><?= esc_html( $row['access'] ); ?></td>
 			</tr>
 		</table>
 	</div>
