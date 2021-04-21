@@ -12,6 +12,10 @@
 			<form class="login-form" method="post">
 				<div class="modal-body">
 
+					<div class="alert alert-success login-success d-none" role="alert">
+						Logged in successfully! Redirecting&hellip;
+					</div>
+
 					<div class="alert alert-danger login-error d-none" role="alert">
 						We could not find a participant matching these details.
 					</div>
