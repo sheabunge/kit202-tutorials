@@ -16,7 +16,7 @@
 	<?php if ( isset( $_GET['result'] ) ) { ?>
 		<div class="alert alert-success text-center" role="alert">
 			<?php if ( 'registered' === $_GET['result'] ) {
-				echo 'Registration successful!';
+				echo 'Registration successful! You can now use your account details to login,';
 			} ?>
 		</div>
 	<?php } ?>

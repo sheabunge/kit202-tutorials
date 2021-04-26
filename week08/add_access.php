@@ -8,6 +8,8 @@
 
 require_once 'base.php';
 
+global $mysqli;
+
 // add the new database table column.
 $mysqli->query( 'ALTER TABLE participant ADD (access ENUM("organiser", "participant") NOT NULL DEFAULT "participant")' );
 
