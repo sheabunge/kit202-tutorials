@@ -28,11 +28,14 @@ switch ( $_REQUEST['action'] ) {
 		$age = $_POST['age'];
 		$password = $_POST['password'];
 
+		// generate a password hash using the default hashing algorithm.
+		$hash = password_hash( $password, PASSWORD_DEFAULT );
+
 		// prepare the SQL query, safely including the provided data.
 		$sql = 'INSERT INTO participant (firstname, lastname, gender, race, email, password, age_group) VALUES (?, ?, ?, ?, ?, ?, ?)';
 		$query = $mysqli->prepare( $sql );
 
-		$query->bind_param( 'sssssss', $first_name, $last_name, $gender, $race, $email, $password, $age );
+		$query->bind_param( 'sssssss', $first_name, $last_name, $gender, $race, $email, $hash, $age );
 
 		if ( ! $query->execute() ) {
 			trigger_error( 'Error adding participant: ' . $query->error );
@@ -46,6 +49,7 @@ switch ( $_REQUEST['action'] ) {
 		$user = trim( $_REQUEST['login_email'] );
 		$pass = trim( $_REQUEST['login_password'] );
 
+		// fetch the participant row entry from the database.
 		$query = $mysqli->prepare( 'SELECT * FROM participant WHERE email = ?' );
 		$query->bind_param( 's', $user );
 
@@ -55,17 +59,42 @@ switch ( $_REQUEST['action'] ) {
 
 		$row = $query->get_result()->fetch_array( MYSQLI_ASSOC );
 
-		if ( $row && $user === $row['email'] && $pass === $row['password'] ) {
-			$_SESSION['session_id'] = $row['id'];
-			$_SESSION['session_user'] = $row['firstname'];
-			$_SESSION['session_email'] = $row['email'];
-			$_SESSION['session_access'] = $row['access'];
+		// check that the user exists in the database.
+		if ( $row && $user === $row['email'] ) {
 
-			echo json_encode( [ 'success' => true ] );
-		} else {
-			echo json_encode( [ 'success' => false ] );
+			// check whether the password has been stored unencrypted.
+			if ( $row['password'] === $pass ) {
+
+				// generate a hash for the plaintext password.
+				$pass_hash = password_hash( $pass, PASSWORD_DEFAULT );
+
+				// update the database record.
+				$query = $mysqli->prepare( 'UPDATE participant SET password = ? WHERE id = ?' );
+				$query->bind_param( 'sd', $pass_hash, $row['id'] );
+
+				// if the query ran successfully, then update the local copy so the verification below will work.
+				if ( $query->execute() ) {
+					$row['password'] = $pass_hash;
+				}
+			}
+
+			// verify that the password provided matches the stored hash.
+			if ( password_verify( $pass, $row['password'] ) ) {
+
+				// copy the stored data into the current session.
+				$_SESSION['session_id'] = $row['id'];
+				$_SESSION['session_user'] = $row['firstname'];
+				$_SESSION['session_email'] = $row['email'];
+				$_SESSION['session_access'] = $row['access'];
+
+				// send a result to the browser.
+				echo json_encode( [ 'success' => true ] );
+				die;
+			}
 		}
 
+		// send a failure message if we reach this point without success.
+		echo json_encode( [ 'success' => false ] );
 		die;
 
 	// fetch a user's details from the database.
