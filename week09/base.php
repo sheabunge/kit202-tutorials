@@ -7,7 +7,7 @@
 global $mysqli;
 
 // initialise a connection to the database.
-$mysqli = new mysqli( 'localhost', 'username', 'password', 'kit202_tutorial06' );
+$mysqli = new mysqli( 'localhost', 'username', 'password', 'kit202_tutorials' );
 
 // start the session.
 session_start();
