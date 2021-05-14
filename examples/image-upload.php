@@ -4,13 +4,13 @@ $upload_dir = __DIR__ . '/uploads';
 $image_url = '';
 
 // handle the image upload.
-if ( isset( $_FILES['picture'] ) ) {
+if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture']['error'] ) {
 
 	// full path to where the image was uploaded.
 	$temp_path = $_FILES['picture']['tmp_name'];
 
 	// original image filename.
-	$filename = $_FILES['picture']['name'];
+	$filename = basename( $_FILES['picture']['name'] );
 
 	// ensure the upload directory exists.
 	if ( ! is_dir( $upload_dir ) ) {
@@ -23,7 +23,7 @@ if ( isset( $_FILES['picture'] ) ) {
 	if ( file_exists( $temp_path ) ) {
 
 		// move the file to our uploads folder
-		if ( rename( $temp_path, $upload_path ) ) {
+		if ( move_uploaded_file( $temp_path, $upload_path ) ) {
 			$image_url = 'uploads/' . $filename;
 		}
 	}
