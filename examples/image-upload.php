@@ -45,6 +45,10 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 		body {
 			min-height: 100vh;
 		}
+
+		img {
+			max-width: 100%;
+		}
 	</style>
 </head>
 <body class="d-flex align-items-center">
@@ -59,7 +63,7 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 
 				<div class="form-group">
 					<label for="picture">Image Upload</label>
-					<input type="file" class="form-control-file" id="picture" name="picture">
+					<input type="file" class="form-control-file" id="picture" name="picture" accept="image/*" required>
 				</div>
 
 				<input type="submit" class="btn btn-primary mb-2" value="Upload">
