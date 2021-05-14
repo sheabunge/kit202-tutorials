@@ -12,6 +12,11 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 	// original image filename.
 	$filename = basename( $_FILES['picture']['name'] );
 
+	// make sure the upload is actually a picture.
+	if ( 'image/' !== substr( mime_content_type( $temp_path ), 0, 6 ) ) {
+		trigger_error( 'Can only upload images', E_USER_ERROR );
+	}
+
 	// ensure the upload directory exists.
 	if ( ! is_dir( $upload_dir ) ) {
 		mkdir( $upload_dir );
@@ -20,14 +25,10 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 	// build the new picture filename
 	$upload_path = $upload_dir . '/' . $filename;
 
-	if ( file_exists( $temp_path ) ) {
-
-		// move the file to our uploads folder
-		if ( move_uploaded_file( $temp_path, $upload_path ) ) {
-			$image_url = 'uploads/' . $filename;
-		}
+	// move the file to our uploads folder
+	if ( move_uploaded_file( $temp_path, $upload_path ) ) {
+		$image_url = 'uploads/' . $filename;
 	}
-
 }
 
 ?>
