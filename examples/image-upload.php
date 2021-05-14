@@ -1,7 +1,7 @@
 <?php
 
 $upload_dir = __DIR__ . '/uploads';
-$image_url = '';
+$filename = '';
 
 // handle the image upload.
 if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture']['error'] ) {
@@ -26,8 +26,8 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 	$upload_path = $upload_dir . '/' . $filename;
 
 	// move the file to our uploads folder
-	if ( move_uploaded_file( $temp_path, $upload_path ) ) {
-		$image_url = 'uploads/' . $filename;
+	if ( ! move_uploaded_file( $temp_path, $upload_path ) ) {
+		$filename = '';
 	}
 }
 
@@ -87,8 +87,8 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">Uploaded image</h5>
-			<?php if ( $image_url ) { ?>
-				<img src="<?php echo htmlspecialchars( $image_url, ENT_QUOTES ); ?>" alt="Uploaded image">
+			<?php if ( $image_filename ) { ?>
+				<img src="uploads/<?php echo htmlspecialchars( $image_filename, ENT_QUOTES ); ?>" alt="Uploaded image">
 			<?php } ?>
 		</div>
 	</div>
