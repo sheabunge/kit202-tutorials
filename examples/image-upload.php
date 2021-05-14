@@ -49,6 +49,10 @@ if ( isset( $_FILES['picture']['error'] ) && UPLOAD_ERR_OK === $_FILES['picture'
 		img {
 			max-width: 100%;
 		}
+
+		.card:not(:last-child) {
+			margin-right: 0.5em;
+		}
 	</style>
 </head>
 <body class="d-flex align-items-center">
