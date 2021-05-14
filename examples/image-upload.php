@@ -42,26 +42,13 @@ if ( isset( $_FILES['picture'] ) ) {
 
 	<style>
 		body {
-			display: flex;
 			min-height: 100vh;
-		}
-
-		.container {
-			flex: 1;
-		}
-
-		.card {
-			display: block;
-			margin: 2em auto;
-			width: 100%;
-			max-width: 600px;
 		}
 	</style>
 </head>
-<body>
+<body class="d-flex align-items-center">
 
-<div class="container">
-
+<div class="container d-flex justify-content-between">
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">Image upload form</h5>
